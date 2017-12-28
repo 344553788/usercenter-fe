@@ -1,0 +1,99 @@
+<div class="col-md-10 col-xs-9">
+    <form class="input-group input-group-sm col-md-4 col-md-offset-8 col-xs-12 margin-top-8" method="" action="">
+        <input type="text" name="orderNo" class="form-control" placeholder="订单号">
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </form>
+    <div class="table-responsive display-none">
+        <table class="table">
+            <tr class="active text-center">    
+                <td class="col-md-6 col-xs-6">
+                    <p class="col-md-8 col-xs-8">宝贝信息</p>
+                    <p class="col-md-2 col-xs-2">单价</p>
+                    <p class="col-md-2 col-xs-2">数量</p>
+                </td>
+                <td class="col-md-2 col-xs-2">实付款</td>
+                <td class="col-md-2 col-xs-2">订单状态</td>
+                <td class="col-md-2 col-xs-2">操作</td>
+            </tr>
+        </table>
+    </div>
+
+    {{#each orders}}
+    <div class="order-list">
+        <div class="order-heading seller-title">
+            <span class="col-lg-3 col-md-4 display-none">订单编号：{{orderNo}}</span>
+            <span class="col-lg-5 col-md-4 col-xs-12 nowrap">店铺：{{shopName}}</span>
+            <span class="col-md-4 text-right display-none">{{orderTime}}</span>
+        </div>
+        <div class="text-center mu-text-right">
+            <div class="row margin-top-20">  
+                <div class="col-md-6 col-xs-12"> <!-- product -->
+                    {{#each products}}
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 text-left">
+                            <a href="" class="col-md-4 col-xs-5">
+                                <img src="{{productPic}}" alt="..." >
+                            </a>
+                            <div class="col-md-8 col-xs-7 font-grey word-break">
+                                <p class="margin-bottom-10">
+                                    <a href="#">{{productName}}</a>
+                                </p>
+                                {{#compoundValue specs ";" ":"}}
+                                {{/compoundValue}}
+                            </div>
+                        </div>
+                        <p class="col-md-2 display-none">{{salePrice}}</p>
+                        <p class="col-md-2 display-none">{{productNumber}}</p>
+                        <!-- <p class="col-md-1">{{totalPrice}}</p> -->
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 mu-margin-top-20">
+                    <p class="mu-border-2 mu-padding-top-10"><strong>¥{{orderAmount}}</strong><br>(含运费:¥{{shippingFee}})</p>
+                </div>
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 line-height-2 mu-order-status mu-margin-top-20">  <!-- 状态 -->
+                    {{#compare orderStatus 0}}
+                    <p>待付款</p>
+                    {{/compare}}
+                    {{#compare orderStatus 1}}
+                        {{#compare shippingStatus 0}}
+                        <p>待发货</p>
+                        {{/compare}}
+                        {{#compare shippingStatus 1}}
+                        <p>已发货</p>
+                        {{/compare}}
+                    {{/compare}}
+                    {{#compare orderStatus 2}}
+                    <p>取消中</p>
+                    {{/compare}}
+                    {{#compare orderStatus 3}}
+                    <p>已取消</p>
+                    {{/compare}}
+                    {{#compare orderStatus 4}}
+                    <p>已完成</p>
+                    {{/compare}}
+                    <p><a href="/SellerOrderList/orderdetails/{{orderNo}}">查看详情</a></p>
+                </div>
+
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 line-height-2 mu-order-status mu-margin-top-20"> <!-- 操作 -->
+                    {{#compare orderStatus 1}}
+                        {{#compare shippingStatus 0}}
+                        <p><a class="btn btn-sm btn-no1" href="/SellerOrderList/orderShipping?orderNo={{orderNo}}">发货</a></p>
+                        {{/compare}}
+                    {{/compare}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    
+    <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="#">« {{orderStatus}}</a></li>
+        {{#paginationPlus page.totalPages page.pageNumber '/SellerOrderList/' '' pageParams }} {{/paginationPlus}}
+        <li><a href="#">»</a></li>
+    </ul>
+</div> 

@@ -1,0 +1,125 @@
+/*导航*/
+
+#nav {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    background-color: #333;
+    /*border-bottom:2px solid #e50112;*/
+}
+
+.nav-bar {
+    width: 1000px;
+    height: 46px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-bar li {
+    float: left;
+    width: 125px;
+    text-align: center;
+}
+
+.nav-bar a {
+    display: block;
+    font: 14px/46px "Microsoft Yahei", "微软雅黑";
+    color: #fff;
+}
+
+/*.nav-bar li>a span{
+    display: inline-block;
+    border-bottom: 2px solid #fff;
+
+}
+.nav-bar li>a:hover span,.nav-bar li>a:focus span,.nav-bar li>a:active span{
+    
+    border-bottom: 2px solid #e50112;
+}*/
+.nav-bar a:hover {
+    display: block;
+    background: #e50112;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-bar ul {
+    display: none;
+}
+
+.nav-bar li:hover ul {
+    display: block;
+    position: absolute;
+}
+
+li#pro1:hover ul,
+li#pro2:hover ul,
+li#pro3:hover ul,
+li#pro4:hover ul,
+li#pro5:hover ul,
+li#pro6:hover ul {
+    width: 1000px;
+    position: absolute;
+    top: 46px;
+    left: 0px;
+    padding-top: 10px;
+    background: #fff;
+    z-index: 2;
+
+}
+
+li#pro1:hover ul li,
+li#pro2:hover ul li,
+li#pro3:hover ul li,
+li#pro4:hover ul li,
+li#pro5:hover ul li,
+li#pro6:hover ul li {
+    width: 200px;
+    height: 100%;
+    line-height: 24px;
+    background: #fff;
+    float: left;
+    z-index: 3;
+    overflow: hidden;
+}
+
+li#pro1:hover ul li a,
+li#pro2:hover ul li a,
+li#pro3:hover ul li a,
+li#pro4:hover ul li a,
+li#pro5:hover ul li a,
+li#pro6:hover ul li a {
+    display: block;
+    /*border-bottom: none;*/
+    font: 12px/36px "Microsoft Yahei", "微软雅黑";
+    color: #FFF;
+    background: none;
+    color: #555;
+    text-align: center;
+    z-index: 3
+}
+
+li#pro1:hover ul li a:hover,
+li#pro2:hover ul li a:hover,
+li#pro3:hover ul li a:hover,
+li#pro4:hover ul li a:hover,
+li#pro5:hover ul li a:hover,
+li#pro6:hover ul li a:hover {
+    display: block;
+    background: #e50112;
+    color: #fff;
+    z-index: 3;
+    text-decoration: none;
+}
+
+li#pro1:hover ul li span,
+li#pro2:hover ul li span,
+li#pro3:hover ul li span,
+li#pro4:hover ul li span,
+li#pro5:hover ul li span,
+li#pro6:hover ul li span {
+    display: inline-block;
+    /*border-bottom: 2px solid #ddd;*/
+    font-weight: bolder;
+    font-size: 15px;
+}

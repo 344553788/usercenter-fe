@@ -1,0 +1,84 @@
+#pds-main{
+    background-color: #f4f4f4;
+    padding:20px 0 120px 0;
+}
+#pds-main .com-w{
+	background-color: #FFF;
+}
+.pds-m-tit{
+	height:40px; 
+	border-bottom:2px solid #f4f4f4;
+}
+.pds-m-tit h4{
+    float:left;
+    width:120px; 
+    height:40px;
+    font-size:16px;
+    color:#666;
+    line-height:40px;
+    text-indent:16px; 
+}
+.pds-sort{
+	float:right;
+	line-height: 40px
+}
+.pds-sort a{
+	display:inline-block;
+	width:36px;
+	margin-right: 10px;
+	background: url(../images/icon/pds_sort.png) right center no-repeat;
+}
+.pds-sort a:first-child{
+	background: none;
+}
+.pds-active{
+	font-weight:bold;
+	color:#333;
+}
+.pds-m-list{
+	padding-left:16px;
+	padding-bottom:60px;
+}
+
+.pds-list-item{
+	float:left; 
+	width:230px;
+	margin-right:16px;
+	margin-top:28px;
+}
+
+.pds-item-cont-img{
+	width:230px;
+	height:230px;
+	overflow:hidden;
+}
+
+.pds-item-cont-img img{
+	width:230px;
+	height:230px;
+}
+
+.pds-list-item p{
+	font-size:13px;
+	padding-top:10px;
+	width:230px;
+	height:44px;
+	overflow: hidden;
+	text-align:center;
+}
+
+.pds-list-item a{
+	color:#000;
+	word-wrap:break-word;
+	
+}
+
+.money{
+	text-align:center;
+	margin-top:8px;
+	color:#e50112;
+	font-weight:400;
+	white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}

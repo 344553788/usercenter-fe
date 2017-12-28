@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>提交订单-No.1商城</title>
+    <link rel="shortcut icon" href="images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/create_shoporder.css" />
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    <form action="/CreateShopOrder/order" method="POST">
+        <div class="shoppingCart com-w">
+            <div class="shopping-item">
+                <div class="shopping-cont pb-10">
+                    <div class="cart-inner">
+                        <div class="cart-head">
+                            <div class="t-name">收货地址</div>
+                        </div>
+                        <div class="address-cont clearfix">
+                            <div class="fr"><a class="btn btn-xs btn-no1" data-toggle="modal" data-target="#addressNewModal" data-address="">新增地址</a></div>
+
+                            <div id="addresses" class="form-horizontal col-md-9 col-xs-9" role="form">
+                                
+                                <!-- <div class="radio">
+                                    <input type="radio" name="address" value="option1" checked>
+                                    <input name="addressId" type="hidden" value="{{id}}">
+                                    aaaabbbbbb
+                                    <strong>112323232</strong>
+                                </div> -->
+
+                                {{#each address}}
+                                <div class="radio">
+                                    <input type="radio" name="address" value="option1" checked>
+                                    <input name="addressId" type="hidden" value="{{id}}">
+                                    {{address}}{{receiver}}
+                                    <strong>{{mobile}}</strong>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-inner">
+                        <div class="cart-head clearfix">
+                            <div class="t-name">商品名称</div>
+                            <div class="t-price">单价</div>
+                            <div class="t-num">数量</div>
+                            <div class="t-subtotal">小计</div>
+                            <div class="t-total">实付</div>
+                        </div>
+                        <div class="cart-cont">
+                            {{#each details}}
+                            <div class="cart-store">
+                                <h3>店铺:{{shop.shopName}}</h3>
+                                
+                                <div class="cart-st-pd">
+                                    {{#each products}}
+                                    <input type="hidden" name="products[{{@index}}].productCode" value="{{productCode}}">
+                                    <input type="hidden" name="products[{{@index}}].productNumber"
+                                    value="{{productNumber}}">
+                                    <input type="hidden" name="products[{{@index}}].specs" value="{{spec}}">
+
+                                    <div class="cart-cont1 clearfix">
+                                        <div class="t-name">
+                                            <div class="cart-shopinfo clearfix">        
+                                                <img src="{{productPic}}" alt="">
+                                                <div class="cart-shopinfo-cont">
+                                                    <p class="cart-link"><a href="#">{{productName}}</a></p>
+                                                    <p id="param_spec" key="{{spec}}" keyValue="{{specValue}}" class="cart-info">规格</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="t-price">
+                                            {{salePrice}}</div>
+                                        <div class="t-num">{{productNumber}}</div>
+                                        <div class="t-subtotal">{{totalPrice}}</div>
+                                        <div class="t-total">{{totalPrice}}</div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                                <div class="store-total com-w clearfix text-right">
+                                    <div class="stroe-total-price fr">
+                                        <p>{{fee.shippingFee}}</p>
+                                        <p><strong>¥{{fee.totalFee}}</strong></p>
+                                    </div>
+                                    <div class="stroe-total-price fr">
+                                        <p>快递:</p>
+                                        <p>店铺合计(含运费):</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-item">
+                <div class="padding-shop clearfix">
+                    <div class="cart-count fr">
+                        <div class="cart-rmb">
+                            <i>总计：</i><span>¥{{totalFee}}</span>
+                        </div>
+                        <input id="formSubmit" type="submit" class="cart-btn" value="提交订单">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+	{{> footer}}
+
+    {{> address_new_pop}}
+     <!-- jQuery -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            //init spec value
+            var specValue = $('#param_spec').attr('keyValue');
+            var specValueArray = specValue.split(';');
+
+            var content = '';
+            for(var i = 0; i < specValueArray.length; i++) {
+                content += specValueArray[i].split(':')[3] + ' ';
+            }
+
+            $('#param_spec').text(content);
+
+            //if no address, pop a modal
+            var address = '{{address}}';
+            var isNotExisted = address === '' ? true: false;
+            if(isNotExisted)
+            $('#addressNewModal').modal({
+                show: true
+            });
+
+            //formSubmit listener
+            $('#formSubmit').click(function(event) {
+                if(isNotExisted) {
+                    event.preventDefault();
+                    $('#addressNewModal').modal('show');
+                }
+            })
+
+            //set listener in pop dialog
+            $('#addressForm').submit(function( event ) {
+                // Stop form from submitting normally
+                event.preventDefault();
+ 
+                // Get some values from elements on the page:
+                var $form = $( this );
+                var profileNo = '{{theUser.profileNo}}';
+                var receiver = $form.find('#receiver').val();
+                var address = $form.find('#address').val();
+                var zipCode = $form.find('#zipCode').val();
+                var mobile = $form.find('#mobile').val();
+                var isDefault = $form.find('#isDefault').val();
+                console.log('====receiver==address', receiver, address);
+
+                url = $form.attr( "action" ) + '/ajax';
+
+                // Send the data using post
+                var posting = $.post( url, {
+                        profileNo: profileNo,
+                        receiver: receiver,
+                        address: address,
+                        zipCode: zipCode,
+                        mobile: mobile,
+                        isDefault: isDefault
+                    } 
+                );
+
+                // Put the results in a div
+                posting.done(function(data) {
+                    $('#addressNewModal').modal('hide');
+                    console.log('----data:', data);
+                    var checked = data.isDefault === true? 'checked':'unchecked';
+                    var template = 
+                    '<div class="radio">' + 
+                        '<input type="radio" name="address" value="option1"' + 
+                        checked + '>' +
+                        '<input name="addressId" type="hidden" value="' + data.id + 
+                        '">' +
+                        data.address + data.receiver +
+                        '<strong>' + data.mobile + '</strong>' +
+                    '</div>';
+                    $('#addresses').append(template);
+            
+                    isNotExisted = false;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

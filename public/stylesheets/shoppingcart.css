@@ -1,0 +1,137 @@
+.shopping-cart{
+    padding-top:30px;
+}
+
+.cart-head {
+    height: 40px;
+    line-height: 40px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+}
+
+.padding-shop {
+    padding: 60px 20px;
+}
+
+.t-select{
+    width:70px;
+    float: left;
+    text-align: center;
+}
+
+.shopping-cart .t-name {
+    width: 348px;
+    float: left;
+    text-align: center;
+}
+
+.t-price,.t-num,.t-subtotal {
+    width: 160px;
+    float: left;
+    text-align: center;
+}
+
+.t-total {
+    width: 100px;
+    float: left;
+    text-align: center;
+}
+
+.cart-store {
+    margin: 20px 0;
+}
+
+.cart-store h3 {
+    line-height: 34px;
+    padding-left: 28px;
+    font-family:"Microsoft yahei";
+    font-size:12px;
+    color:#666;
+}
+
+.cart-st-pd {
+    border: 1px solid #ddd;
+}
+
+.cart-cont1 {
+    border-bottom: 1px dashed #ccc;
+}
+
+.cart-cont1:last-child {
+    border-bottom: none;
+}
+
+.cart-cont .t-select,
+.cart-cont .t-price,
+.cart-cont .t-total,
+.cart-cont .t-num,
+.cart-cont .t-subtotal {
+    line-height: 120px;
+}
+
+.cart-shopinfo {
+    padding: 20px 0;
+}
+
+.cart-shopinfo img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #eee;
+    float: left;
+}
+
+.cart-shopinfo-cont {
+    width: 260px;
+    text-align: left;
+    padding: 0 10px;
+    font-size: 12px;
+    height: 80px;
+    float: left;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+}
+
+.cart-link {
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-link a:hover {
+    text-decoration: underline;
+}
+
+.cart-info {
+    color: #000;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.cart-rmb {
+    margin-bottom: 16px;
+}
+
+.cart-rmb i {
+    font-size: 14px;
+    color: #999;
+    font-style: normal;
+}
+
+.cart-rmb span {
+    font: bold 24px/1 Verdana;
+    color: #e50112;
+}
+
+.cart-btnbox {
+    text-align: right;
+}
+
+.cart-btn {
+    width: 166px;
+    height: 36px;
+    background-color: #e50112;
+    font: 16px/36px "Microsoft YaHei", "微软雅黑";
+    color: #FFF;
+}

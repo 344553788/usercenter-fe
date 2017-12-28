@@ -1,0 +1,45 @@
+/*logo-bar*/
+
+#logo {
+    height: 134px;
+}
+
+.logo-bar {
+    padding-left: 0px;
+    padding-top: 34px;
+}
+
+.search-box {
+    margin-top: 65px;
+    margin-left: 210px;
+}
+
+.search-text {
+    width: 258px;
+    height: 36px;
+    padding: 4px 12px;
+    border: 2px solid #e50112;
+}
+
+.search-btn {
+    width: 70px;
+    height: 36px;
+    background: #e50112;
+    color: #fff;
+    font-size: 14px;
+}
+
+.shop-car {
+    position:relative;
+    width: 47px;
+    height: 36px;
+    margin-left: 20px;
+    background: url("../images/icon/shop-car.png")center center no-repeat;
+}
+
+.badge{
+    background-color: #e50112;
+    position:absolute;
+    right:0;
+}
+

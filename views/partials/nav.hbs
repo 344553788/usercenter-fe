@@ -1,0 +1,20 @@
+<div id="nav">
+    <ul class="nav-bar">
+        <li><a href="/">首页</a></li>
+        <li><a href="/shoplist">店铺</a></li>
+        {{#each nav}}
+        <li id="pro{{addOne @index}}"><a href="/goodslist/{{cateId}}">{{title}}</a>
+            <ul>
+                {{#each subCategorys}}
+                <li>
+                    <p><a href="/goodslist/{{cateId}}"><span><strong>{{title}}</strong></span></a></p>
+                    {{#each subCategorys}}
+                    <p><a href="/goodslist/{{cateId}}">{{title}}</a></p>
+                    {{/each}}
+                </li>
+                {{/each}}
+            </ul>
+        </li>
+        {{/each}}
+    </ul>
+</div>

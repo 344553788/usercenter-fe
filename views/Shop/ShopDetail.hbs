@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商家店铺-No.1商城</title>
+    <link rel="shortcut icon" href="/images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/shop_detail.css" />
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    {{> nav}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-xs-2 sidebar">
+                <img class="img-thumbnail" src="/images/default_shop_logo.jpg" alt="...">
+                <div class="col-md-12 col-xs-12 text-left padding-bottom-16">
+                    <h5 class="margin-top-20">{{shop.shopName}}</h5>
+                    <p class="margin-top-10">{{shop.shopBrief}}</p>
+                    <p class="margin-top-10">{{shop.address}}</p>
+                    <p class="margin-top-10">{{shop.tel}}</p>
+                </div>
+                <form class="input-group input-group-sm" method="GET" action="/shoplist/ShopDetail/{{shop.id}}">
+                    <input type="text" name="name" class="form-control" placeholder="搜索本店商品">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <a class="line-height-3 padding-left-15" href="/shoplist/ShopDetail/{{shop.id}}">查看全部宝贝</a>
+                {{#each cates}}
+                <ul class="nav nav-sidebar">
+                   
+                    <li class="sidebar-brand"><a href="/shoplist/ShopDetail/{{../shop.id}}?cateId={{id}}">{{title}}</a></li>
+                    {{#each subCategorys}}
+                    <li><a href="/shoplist/ShopDetail/{{../../shop.id}}?cateId={{id}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+                {{/each}}
+            </div>
+            <div class="col-md-10 col-xs-10">
+                {{#each products}}
+                <div class="col-md-4 col-xs-4">
+                    <div class="thumbnail">
+                        <a href="/goodslist/goodsDetail/{{productCode}}">
+                            <img src="{{coverPics}}" alt="...">
+                            <div class="caption text-center">
+                                <p>{{name}}</p>
+                                <h5>¥{{price}}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+          
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                {{#paginationPlus page.totalPages page.pageNumber '/shoplist/ShopDetail/' shop.id pageParam}} {{/paginationPlus}}
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    {{> footer}}
+</body>
+</html>

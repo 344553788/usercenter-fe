@@ -1,0 +1,29 @@
+<div id="top-bar">
+    <!-- <div class="container"> -->
+        <div class="fl">
+            {{#if isHome}}
+            <span>欢迎来到NO.1商城！<span>
+            {{else}}
+            <span>越购越实惠！赶紧逛逛吧～<span>
+            {{/if}}
+
+            {{#if theUser}}
+            <a href="/authenticate/logout">{{theUser.userName}} [退出]</a>
+            {{else}}
+           	<a href="/authenticate/login">请先登录</a>
+            <a href="/authenticate/register">免费注册</a>
+            {{/if}} 
+        </div>
+        <ul class="tb-right">
+            {{#if isHome}}
+            {{else}}
+            <li><a href="/">商城首页</a></li>
+            {{/if}}
+            <li><a href="/orderlist">我的订单</a></li>
+            <li><a href="/myteam">个人中心</a></li>
+            <li><a href="#">我的收藏</a></li>
+            <!-- <li><a href="/MyCollection">我的收藏</a></li> -->
+            <li><a href="/SellerOrderList?orderTab=seller_all_orders">卖家中心</a></li> 
+        </ul>
+    <!-- </div> -->
+</div>

@@ -1,0 +1,137 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="row">
+                <h3 class="panel-title col-md-5 col-xs-5">{{category.title}}</h3>
+                <ol class="breadcrumb col-md-7 col-xs-7 text-right">
+                    <li>
+                        <a href="/SellerGoodsMgt/PublishGoodsStep1">商品分类</a>
+                    </li>
+                    <li>上传商品</li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel-body  col-md-12 col-xs-12">
+            {{> success_failure_feedback}}
+
+            <form class="form-horizontal" action="/SellerGoodsMgt/publishGoodsStep2" method="post" enctype="multipart/form-data">
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="name" class="col-md-2 col-xs-12 control-label">商品名称:</label>
+                    <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="name" placeholder="商品名称" name="name" type="text" >
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="price" class="col-md-2 col-xs-12 control-label">市场价格:</label>
+                    <div class="col-md-5 col-xs-12">
+                        <input class="form-control" id="price" placeholder="市场价格" name="price" type="text" >
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="name" class="col-md-2 col-xs-12 control-label">商品规格:</label>
+                    <div class="col-md-9 col-xs-12">
+                        <div class="div_contentlist checkbox">
+                            {{#each specs}}
+                            <ul class="Father_Title">
+                                <li>{{specName}}:</li>
+                                <input type="hidden" value="{{id}}" />
+                            </ul>
+                            <ul class="Father_Item{{@index}}">
+                                {{#each specValues}}
+                                <li class="li_width">
+                                    <label>
+                                        <input type="checkbox" class="chcBox_Width" value="{{id}}" />{{specValue}}
+                                    </label>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            <br> {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div id="createTable" style="margin-bottom: 20px"></div>
+
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label style="margin-bottom: 20px" for="name" class="col-md-2 col-xs-12 control-label">上传商品图片:</label>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label style="margin-bottom: 20px" for="name" class="col-md-2 col-xs-12 control-label">上传商品封面图片:</label>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-12 col-md-offset-2 file">
+                                <input type="file" name="goodsPic" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="isOn" class="col-md-2 col-xs-6 control-label">是否上架:</label>
+                    <div class="col-md-5 col-xs-6">
+                        <input class="chcBox_Width" id="isOn" name="isOn" type="checkbox"> 是
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="isLogistics" class="col-md-2 col-xs-6 control-label">是否需要物流:</label>
+                    <div class="col-md-5 col-xs-6">
+                        <input class="chcBox_Width" id="isLogistics" name="isLogistics" type="checkbox">
+                        <input class="form-control" id="shippingFee" placeholder="运费" name="shippingFee" type="text" >  
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="desc" class="col-md-2 col-xs-12 control-label">商品详情:</label>
+                    <div class="col-md-6 col-xs-12">
+                        <textarea rows="8" class="form-control" id="desc" placeholder="商品详情" name="desc" type="text"></textarea>
+                    </div>
+                </div>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-6 col-md-offset-4 col-xs-offset-2">
+                        <input class="btn btn-no1 btn-block" type="submit" value="保存">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/javascripts/GoodsSpecCompose.js"></script>
+    <script>
+    window.onload = function() {
+        //SKU信息
+        $(".div_contentlist label").bind("change", function() {
+            step.Creat_Table();
+        });
+    }
+    </script>
+</div>

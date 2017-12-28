@@ -1,0 +1,75 @@
+<div class="col-md-10 col-xs-9 col-md-offset-2 col-xs-offset-3">
+    <div class="row">
+        <form action="/ShopOrderPayment/alipay" method="POST">
+            <input type="hidden" name="orderNo" value="{{orderNo}}">
+            <input type="hidden" name="orderAmount" value="{{orderAmount}}">
+            <div class="col-md-12 col-xs-12">
+                <ul class="nav nav-tabs nav-tabs-ex" role="tablist">
+                    <li id="alipay" role="presentation" class="active"><a href="#">支付宝</a></li>
+                    <li id="wechatpay" role="presentation"><a href="#">微信支付</a></li>
+                    {{#if hiddenAgentPay}}
+                    <li id="nabipay" role="presentation"><a href="#">纳币支付</a></li>
+                    {{else}}
+                    <li id="shoppay" role="presentation"><a href="#">商家代付</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+            <div id="paymentPic" class="col-md-12 col-xs-12">
+                <input type="radio" name="paymentType" id="pay_radio" checked>
+                <img src="/images/alipay.jpg">
+            </div>
+            <fieldset class="fieldset-style col-md-12 col-xs-12 margin-bottom-80">
+                <div class="col-md-2 col-xs-2">
+                    <button type="submit" class="btn btn-no1 btn-block">立即支付</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script>
+window.onload = function() {
+    var wechatpay = $('#wechatpay');
+    var alipay = $('#alipay');
+    var shoppay = $('#shoppay');
+    var nabipay = $('#nabipay');
+
+    wechatpay.click(function() {
+        wechatpay.parent().find('li').each(function() {
+            $(this).removeClass("active");
+        });
+        wechatpay.addClass('active');
+        $('#paymentPic').find('img').attr('src', '/images/wepay.jpg');
+        $('form').attr('action', '/ShopOrderPayment/wechatpay');
+    });
+
+    alipay.click(function() {
+        wechatpay.parent().find('li').each(function() {
+            $(this).removeClass("active");
+        });
+        alipay.addClass('active');
+        $('#paymentPic').find('img').attr('src', '/images/alipay.jpg');
+        $('form').attr('action', '/ShopOrderPayment/alipay');
+
+    });
+
+    shoppay.click(function() {
+        wechatpay.parent().find('li').each(function() {
+            $(this).removeClass("active");
+        });
+        shoppay.addClass('active');
+        $('#paymentPic').find('img').attr('src', '/images/shoppay.jpg');
+        $('form').attr('action', '/ShopOrderPayment/shoppay');
+
+    });
+
+    nabipay.click(function() {
+        wechatpay.parent().find('li').each(function() {
+            $(this).removeClass("active");
+        });
+        nabipay.addClass('active');
+        $('#paymentPic').find('img').attr('src', '/images/shoppay.jpg');
+        $('form').attr('action', '/ShopOrderPayment/nabipay');
+
+    });
+}
+</script>

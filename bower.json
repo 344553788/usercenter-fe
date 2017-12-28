@@ -1,0 +1,22 @@
+{
+  "name": "usercenter-fe",
+  "description": "",
+  "main": "",
+  "authors": [
+    "nicholas.lcj <liuchengjun0913@126.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chained": "^1.0.0"
+  }
+}

@@ -1,0 +1,56 @@
+<div class="col-md-10 col-xs-9 col-md-offset-2 col-xs-offset-3">
+    
+    <div class="row">
+    	<form action="/AccountOrderPayment/wechatpay" method="POST">
+    		<input type="hidden" name="orderNo" value="{{orderNo}}">
+    		<input type="hidden" name="orderPrice" value="{{orderPrice}}">
+	    	<div class="col-md-12 col-xs-12">
+		    	<ul class="nav nav-tabs nav-tabs-ex" role="tablist">
+				  <li id ="wechatpay" role="presentation" class="active"><a href="#">微信支付</a></li>
+				  <li id ="alipay" role="presentation"><a href="#">支付宝</a></li>
+				</ul>
+			</div>
+			<div id="paymentPic" class="col-md-12 col-xs-12">
+				<input type="radio" name="paymentType" id="pay_radio" checked> 
+				<img src="/images/wepay.jpg">
+			</div>
+
+			<div class="col-md-12 col-xs-12 ">
+				<button type="submit" class="btn btn-primary">立即支付</button>
+			</div>
+		</form>
+    </div>
+
+</div>
+
+<script>
+	window.onload = function(){
+		var wechatpay = $('#wechatpay');
+		var alipay = $('#alipay');
+
+		wechatpay.click(function() {
+			wechatpay.parent().find('li').each(function() {
+				$(this).removeClass("active");
+			});
+			wechatpay.addClass('active');
+			$('#paymentPic').find('img').attr('src', '/images/wepay.jpg');
+			$('form').attr('action', '/AccountOrderPayment/wechatpay');
+		});
+
+		alipay.click(function() {
+			wechatpay.parent().find('li').each(function() {
+				$(this).removeClass("active");
+			});
+			alipay.addClass('active');
+			$('#paymentPic').find('img').attr('src', '/images/alipay.jpg');
+			$('form').attr('action', '/AccountOrderPayment/alipay');
+
+		});
+		
+	}
+
+</script>
+
+
+
+

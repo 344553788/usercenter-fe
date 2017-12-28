@@ -1,0 +1,117 @@
+<div class="col-md-10 col-xs-9">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="active info">
+                    <th>
+                        <span class="col-md-4 col-xs-12">收货信息</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="col-md-7 col-xs-12 line-height-3">
+                            <p>收货人：{{orderdetail.consignee}}</p>
+                            <p>手机号：{{orderdetail.mobile}}</p>
+                            <p>
+                               收货地址：
+                               {{orderdetail.address}}</p>
+                        </div>
+                        <div class="col-md-5 col-xs-12 line-height-3">
+                            <p>运费：¥{{orderdetail.shippingFee}}</p>
+                            <p>商品合计：¥{{orderdetail.orderAmount}}</p>
+                            <p class="font-red"><strong>实付：¥{{orderdetail.orderAmount}}</strong></p>
+                                
+                        </div>
+                        <!-- <div class="col-md-5 col-xs-5 line-height-3">
+                            <p class="font-red text-right"><strong>实付：¥{{orderdetail.orderAmount}}</strong></p>
+                        </div> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="order-list">
+        <div class="order-heading">
+            <span class="col-lg-3 col-md-4 col-xs-12">订单编号：{{orderdetail.orderNo}}</span>
+            <span class="col-lg-5 col-md-4 col-xs-12 background-grey">店铺：{{orderdetail.shopName}}</span>
+            <span class="col-md-4 col-xs-12 text-right mu-text-left background-grey">{{orderdetail.updateTime}}</span>
+        </div>
+        <div class="text-center mu-text-right">
+            <div class="row margin-top-20"> 
+                <div class="col-md-6 col-xs-12"> <!-- product -->
+                    {{#each orderdetail.products}}
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12 text-left mu-margin-top-20">
+                            <a href="" class="col-md-4 col-xs-7">
+                                <img src="{{productPic}}" alt="..." >
+                            </a>
+                            <div class="col-md-8 col-xs-5 font-grey word-break">
+                                <p class="margin-bottom-10">
+                                    <a href="#">{{productName}}</a>
+                                </p>
+                                {{#compoundValue specs ";" ":"}}
+                                {{/compoundValue}}
+                            </div>
+                        </div>
+                        <p class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 mu-margin-top-20">{{salePrice}}</p>
+                        <p class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 mu-margin-top-20">{{productNumber}}</p>
+                        <!-- <p class="col-md-1">{{totalPrice}}</p> -->
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 mu-margin-top-20">
+                    <p><strong>¥{{orderdetail.orderAmount}}<br>(含运费:¥{{orderdetail.shippingFee}})</strong></p>
+                </div>
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 line-height-2 mu-order-status mu-margin-top-20">  <!-- 状态 -->
+                    
+                    {{#compare orderdetail.orderStatus 0}}
+                    <p>待付款</p>
+                    {{/compare}}
+                    {{#compare orderdetail.orderStatus 1}}
+                        {{#compare orderdetail.shippingStatus 0}}
+                        <p>待发货</p>
+                        {{/compare}}
+                        {{#compare orderdetail.shippingStatus 1}}
+                        <p>待收货</p>
+                        {{/compare}}
+                    {{/compare}}
+                    {{#compare orderdetail.orderStatus 2}}
+                    <p>取消中</p>
+                    {{/compare}}
+                    {{#compare orderdetail.orderStatus 3}}
+                    <p>已取消</p>
+                    {{/compare}}
+                    {{#compare orderdetail.orderStatus 4}}
+                    <p>已完成</p>
+                    {{/compare}}
+                    
+                </div>
+
+                <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 line-height-2 mu-order-status mu-margin-top-20"> <!-- 操作 -->
+                    {{#compare orderdetail.orderStatus 0}}
+                    <p><a href="/orderlist/PayforOrder?orderAmount={{orderdetail.orderAmount}}&orderNo={{orderdetail.orderNo}}" class="btn btn-sm btn-no1">立即付款</a></p>
+                    <p><a href="/orderlist/cancelOrder?orderNo={{orderdetail.orderNo}}">取消订单</a></p>
+                    {{/compare}}
+
+                    {{#compare orderdetail.orderStatus 1}}
+                        {{#compare orderdetail.shippingStatus 0}}
+                        <p><a href="/orderlist/cancelOrder?orderNo={{orderdetail.orderNo}}">取消订单</a></p>
+                        {{/compare}}
+                        {{#compare orderdetail.shippingStatus 1}}
+                        <p><a href="/orderlist/orderDone?orderNo={{orderdetail.orderNo}}">确认收货</a></p>
+                        <p><a href="#">申请售后</a></p>
+                        {{/compare}}
+                    {{/compare}}
+
+                    {{#compare orderdetail.orderStatus 4}}
+                        <p><a href="#">申请售后</a></p>
+                    {{/compare}}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>

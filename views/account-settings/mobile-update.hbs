@@ -1,0 +1,52 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">手机修改</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="/accountsettings/security-info/mobile-update" method="post">
+                <fieldset>
+                    <!-- Phone -->
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="smsMobile" class="col-md-2 col-xs-12 control-label">
+                            新手机号码:
+                        </label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" placeholder="新手机号码" name="mobile">
+                            <input id="smsMobile" value="{{theUser.mobile}}" type="hidden" class="form-control">
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <a id="smscodeBtn" href="#" class="btn btn-default">发送验证码</a>
+                        </div>
+                    </div>
+                    <!-- verify code -->
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="verifycode" class="col-md-2 col-xs-12 control-label">
+                            短信验证码:
+                        </label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" id="verifycode" placeholder="短信验证码" name="verifyCode">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-6 col-md-offset-4 col-xs-offset-2">
+                        <input class="btn btn-no1 btn-block" type="submit" value="保存">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    {{#if success}}
+    <div class="alert alert-success" role="alert">操作成功</div>
+    {{/if}} {{#if failure}}
+    <div class="alert alert-danger" role="alert">操作失败</div>
+    {{/if}}
+</div>
+
+<script>
+    window.onload = function() {
+        sendSMS();
+    }
+
+</script>

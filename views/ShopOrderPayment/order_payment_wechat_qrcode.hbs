@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>微信支付页面</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			.pay-bg {
+				background-color: #003;
+			}
+			#qrcode {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -150px;
+				margin-top: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="contain ">
+			<div class="row">
+				<div class="col-md-12 col-xs-12 pay-bg">
+					<div id="qrcode" >
+						
+					</div>
+					<div>
+						<a href="/orderlist" class="btn btn-success pull-right">如已经支付成功，点击这里完成</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- jQuery -->
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+		<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+		<script>
+			
+			 $('#qrcode').qrcode({
+			 	width: 300,height: 300,text: '{{{wechatpay.paymentURL}}}'
+
+			 });
+
+		</script>
+	</body>
+</html>

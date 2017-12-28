@@ -1,0 +1,91 @@
+<div class="col-md-10 col-xs-9">
+	<div class="panel">
+			<nav class="navbar navbar-default margin-top-0" role="navigation">
+				<div class="navbar-header col-md-12 col-xs-12">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#">创收积分提现</a></li>
+						{{#if theUser.shop}}
+						   <li role="presentation"><a href="/mywallet/DrawbackWallet_Cash?shop={{shop}}">现金提现</a></li>
+						{{/if}}
+					</ul>
+				</div>
+			</nav>
+		<div class="panel-body">
+			{{> success_failure_feedback}}
+
+			<form class="form-horizontal margin-top-20" action="/mywallet/DrawbackWallet_Gold" method="POST" role="form">
+				<input type="hidden" name="cashType" value="0" />
+				<input type="hidden" name="shop" value="{{shop}}" />
+				<div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label" for="">提现金额：</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="text" class="form-control" id="" name="amount" placeholder="请输入提现金额">
+					</div>
+				</div>
+				<!--
+				<div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label" for="">提现类型：</label>
+					<div class="col-md-4 col-xs-12">
+						<label class="col-md-3 col-xs-12 control-label" for=""><input type="radio" name="cashType" id="" value="0"  checked="checked" />创收积分</label>
+					 <label class="col-md-3 col-xs-12 control-label" for="">	<input type="radio" name="cashType" id="" value="1"/>现金</label>
+					</div>
+				</div>-->
+				<div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label" for="">验证码：</label>
+					<div class="col-md-4 col-xs-6">
+						<input type="text" class="form-control" id="" name="verifyCode" placeholder="请输入短信验证码">
+					</div>
+					<input id="smsMobile" type="hidden" value="{{theUser.mobile}}">
+					<div class="col-md-4 col-xs-6">
+						<a id="smscodeBtn" href="#" class="btn btn-primary">发送验证码</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-xs-12 col-md-offset-2 font-grey">
+						<p><small>单笔提现金额不少于10000创收积分,100创收积分=1人民币</small></p>
+						<p><small>目前提现手续比例{{DrawbackRate}}%</small></p>
+					</div>
+				</div>
+				<nav class="navbar navbar-default margin-top-50" role="navigation">
+					<div class="navbar-header col-md-12 col-xs-12">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#">支付宝</a></li>
+							<!-- <li role="presentation"><a href="/mywallet/DrawbackWallet_Wechat">微信</a></li> -->
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-xs-12 col-md-offset-3 margin-top-20">
+							<div class="thumbnail">
+								<img src="/images/alipay.jpg" alt="支付宝">
+								<div class="caption text-center line-height-3">
+									<h3>支付宝绑定账户</h3>
+									{{#if theUser.userBank.alipay}}
+									<h5>
+										已绑定账户：{{theUser.userBank.alipay.bankCode}}
+										<a href="/accountsettings/payment-binding-ali">更改</a>
+									</h5>
+									{{else}}
+										<a href="/accountsettings/payment-binding-ali"><p>请先绑定支付(绑定账户后方便您提现)</p></a>
+									{{/if}}
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</nav>
+				<fieldset class="fieldset-style">
+                    <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-2 margin-top-20">
+                        <input class="btn btn-no1 btn-block" type="submit" value="提交">
+                    </div>
+                </fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+    window.onload = function() {
+        sendSMS();
+    }
+
+</script>

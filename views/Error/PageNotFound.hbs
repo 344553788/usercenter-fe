@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表-No.1商城</title>
+    <link rel="shortcut icon" href="images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/page_notfound.css">
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    <div class="notfound com-w">
+        <img src="/images/404.png" alt="404">
+        <dl>
+            <dt><h4>很抱歉，您查看的宝贝不存在，可能已下架或者被转移。</h4></dt>
+            <dd>您可以在顶部搜索框输入关键词搜索</dd> 
+        </dl>
+    </div>
+    {{> footer}}
+</body>

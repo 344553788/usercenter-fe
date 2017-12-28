@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情页-No.1商城</title>
+    <link rel="shortcut icon" href="/images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/goods_detail.css" />
+    <link rel="stylesheet" href="/stylesheets/item_active.css">
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    {{> nav}}
+
+    <div class="pdinfo-tit com-w">
+        <!-- <strong><a href="#">手机</a></strong>
+        <span>&nbsp;&gt;&nbsp;</span>
+        <a href="#">手机通讯</a>
+        <span>&nbsp;&gt;&nbsp;</span>
+        <a href="#">iPhone</a>
+        <span>&nbsp;&gt;&nbsp;</span>
+        <em>iPhone7 Plus</em> -->
+        
+        {{#if firtCategory}}
+        <strong><a href="#">{{firtCategory.title}}</a></strong>
+        <span>&nbsp;&gt;&nbsp;</span>
+        {{/if}}
+        {{#if secondCategory}}
+        <a href="#">{{secondCategory.title}}</a>
+        <span>&nbsp;&gt;&nbsp;</span>
+        {{/if}}
+        {{#if thirdCategory}}  
+        <a href="#">{{thirdCategory.title}}</a>
+        <span>&nbsp;&gt;&nbsp;</span>
+        {{/if}}
+        
+        <em>{{product.name}}</em>
+
+
+    </div>
+    <div class="pdinfo com-w">
+        <div class="pdinfo-des clearfix">
+            <div class="fl">
+                <div class="pdinfo-des-item">
+                    {{#each product.images}}
+                        {{#compare @index 0}}
+                        <div class="pdinfo-des-img">
+                            <img id="zoom_selected_item" src="{{imgUrl}}" alt="">
+                        </div>
+                        {{/compare}}
+                    {{/each}}
+                    <ul id="zoom_gallery_items" class="pdinfo-des-smimg clearfix">
+                        {{#each product.images}}
+                        <li 
+                            {{#compare @index 0}}
+                                class="zoom_gallery_item_active"
+                            {{/compare}}
+                        >
+                            <a href="#"><img src="{{imgUrl}}" alt=""></a>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </div>
+            <div class="fr">
+                <form action="/CreateShopOrder" method="POST">
+                    <div class="pdinfo-des-cont">
+                        <input id="param_productCode" type="hidden" name="products[0].productCode" value="">
+                        <input id="param_spec" type="hidden" name="products[0].spec" value="">
+                        <h3>{{product.name}}</h3>
+                        
+                        <div class="pdinfo-des-info">
+                            <div class="dl clearfix">
+                                <div class="dt">价格</div>
+
+                                <div class="dd clearfix"><span class="pdinfo-des-info-price"><small>￥</small><strong>{{currentPrice}}</strong></span></div>
+                            </div>
+                            {{#each product.specs}}
+                            <div class="dl clearfix">
+                                <div class="dt colorSelect">选择{{spec}}</div>
+                                <div class="dd spec clearfix">
+                                    {{#each specValue}}
+                                    <!-- <div class="ppdinfo-info-row-color ppdinfo-info-row-color_acitve">
+                                        土豪金
+                                    </div> -->
+                                    <li key="{{key}}" 
+                                        class="ppdinfo-info-row-color
+                                        {{#compare @index 0}}
+                                            ppdinfo-info-row-color_acitve
+                                        {{/compare}}
+                                    ">
+                                        {{value}}
+                                    </li>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            {{/each}}
+                            
+                            <div class="dl">
+                                <div class="dt pdinfo-attr-num-tit">数量</div>
+                                <div class="dd clearfix">
+                                    <div class="pdinfo-attr-num">
+                                        <div class="reduction">-</div>
+                                        <div class="pdinfo-attr-input">
+                                            <input id="pdnumber" type="text" name="products[0].quantity" value="1">
+                                        </div>
+                                        <div class="plus">+</div>
+                                    </div>
+                                    <span class="pdinfo-attr-more">库存<em>{{currentQuantity}}</em>件</span>
+                                </div>
+                            </div>
+                           
+                            <input type='submit' class="pd-buy" value="立即购买">
+                            <a id="pd-add" class="pd-add" href="#">加入购物车</a>
+                            <a href="#" class="pd-collect">收藏宝贝</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="pd-introducing com-w clearfix">
+       <!--  <div class="pd-intro-cont">
+            <ul class="pd-intro-tit">
+                <li class="active">
+                    <h4>详情</h4></li>
+                <li>
+                    <h4>评价<span>(30)</span></h4></li>
+            </ul>
+            <div class="pd-intro-txt">
+                <h4>产品介绍</h4>
+                <p>iPhone 7 Plus 现有亮黑1、黑、银、金和玫瑰金五种颜色，配备新款 1200 万像素广角及长焦双镜头摄像头、A10 Fusion 芯片、支持广色域的新款 Retina HD 显示屏、立体声扬声器和 iOS 10，具有防溅、抗水、防尘功能。</p>
+            </div>
+            <a href="#"><img src="images/productdetails/des_ad1.jpg" alt="产品详情图" /></a>
+            <div class="pd-intro-txt">
+                <h4>显示屏</h4>
+                <p>具备广色域和 3D Touch 技术的 Retina HD 显示屏。具备新一代 Multi Touch 技术的 5.5 英寸 (对角线) LED 背光宽显示屏，采用 IPS 技术以及新的 Taptic Engine。
+                </p>
+            </div>
+            <a href="#"><img src="images/productdetails/des_ad.jpg" alt="产品详情图" /></a>
+        </div> -->
+       <!--  <div class="pd-intro-cont">
+            <form action="" class="pd-cont-rev">
+                <h4>评价</h4>
+                <label for="">
+                    <input name="evaluate" type="radio" value="全部评论">&nbsp;&nbsp;全部
+                </label>
+                <label for="">
+                    <input name="evaluate" type="radio" value="图片">&nbsp;&nbsp;有图<span>(30)</span>
+                </label>
+            </form>
+            <div class="rev-list clearfix">
+                <div class="rev-user">
+                    <img src="images/productdetails/userhead.jpg" alt="会员头像" />
+                    <div class="rev-id">d***6</div>
+                </div>
+                <div class="rev-tit clearfix">
+                    <div class="rev-con">挺不错的信赖</div>
+                    <div class="rev-meta">规格:玫瑰金 128G</div>
+                </div>
+            </div>
+            <div class="rev-list clearfix">
+                <div class="rev-user">
+                    <img src="images/productdetails/userhead1.jpg" alt="会员头像">
+                    <div class="rev-id">飞***2</div>
+                </div>
+                <div class="rev-tit">
+                    <div class="rev-con">刚收到货，宝贝棒棒哒！</div>
+                    <div class="rev-pic"><img src="images/productdetails/rev_pic.jpg" alt="评价图片" /></div>
+                    <div class="rev-meta">规格:亮黑 128G</div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    {{> footer}}
+
+    <!-- jQuery -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script src="//cdn.bootcss.com/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+    <!-- zoom -->
+    <script>
+        $("#zoom_selected_item").elevateZoom();
+
+        var liNodes = $("#zoom_gallery_items").find('li');
+
+        $("#zoom_gallery_items").find("li>a>img").click(function() {
+            liNodes.each(function() {
+                $(this).removeClass('zoom_gallery_item_active');
+            });
+
+            var liNode = $(this).parent().parent();
+            liNode.addClass('zoom_gallery_item_active');
+
+            var imgSrc = $(this).attr("src");
+            $("#zoom_selected_item").attr("src", imgSrc);
+            $("#zoom_selected_item").elevateZoom();
+        });
+    </script> 
+    <!-- goods spec -->
+    <script>
+    //商品规格选择
+    $(function(){
+        $('#param_productCode').val('{{product.productCode}}');
+
+        var $currentPrice = $('.pdinfo-des-info-price').find('strong');
+        
+        var $spec = $('.spec');
+        var specItemDOM = 'li';
+        var selectedClass = 'ppdinfo-info-row-color_acitve';
+        var attr = 'key';
+
+        initSpecState($spec, specItemDOM, selectedClass, attr);
+        generatePrice($spec, specItemDOM, selectedClass, attr);
+
+        //初始化状态和设置监听
+        function initSpecState($spec, specItemDOM, selectedClass, attr) {
+            $spec.each(function() {
+                var specItems = $(this).find(specItemDOM);
+
+                specItems.each(function() {
+                    var specItem = $(this);
+
+                    specItem.click(function() {
+                        specItems.each(function() {
+                            $(this).removeClass(selectedClass);
+                        });
+
+                        $(this).addClass(selectedClass);
+
+                        generatePrice($spec, specItemDOM, selectedClass, attr);
+                    });
+                });
+            });
+        }
+
+        //通过spec的选择 生成价格（扫描状态生产价格）
+        function generatePrice($spec, specItemDOM, selectedClass, attr) {
+            var result = '';
+            $spec.each(function() {  
+                var $specItems = $(this).find(specItemDOM); 
+                $specItems.each(function() {
+                    var specItem = $(this);
+
+                    if(!!specItem.hasClass(selectedClass)) {
+                        if(!!result){
+                            result += ';' + specItem.attr(attr);
+                        }else {
+                            result = specItem.attr(attr);
+                        }
+                    }
+                });       
+            });
+
+            //console.log('----finall---result:', result);
+            
+            //对比spec属性值来确定price
+            {{#each product.skus}}
+                if('{{specs}}' === result) {
+                    $currentPrice.text({{salePrice}});
+
+                    $('#param_spec').val('{{specs}}');
+                }
+            {{/each}} 
+        }    
+    });
+    </script>
+
+    <!-- 加入购物车 -->
+    <script>
+        $('#pd-add').click(function() {
+            var pdSpec = $('#param_spec').val();
+            var pdnumber = $('#pdnumber').val();
+            var href = '/ShoppingCart/addGoods/{{product.productCode}}?productNumber=' 
+                    + pdnumber + '&spec=' + pdSpec;
+
+             $(this).attr('href', href);
+        });
+
+    </script>
+</body>
+
+</html>

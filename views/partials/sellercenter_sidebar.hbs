@@ -1,0 +1,66 @@
+<div class="col-md-2 col-xs-3 sidebar">
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            交易管理
+        </li>
+        <li class="{{#if active.seller_all_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderTab=seller_all_orders">全部订单</a>
+        </li>
+        <li class="{{#if active.seller_unpaid_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderStatus=0&orderTab=seller_unpaid_orders">等待买家付款</a>
+        </li>
+        <li class="{{#if active.seller_agent_orders}}active{{/if}}">
+            <a href="/SellerOrderList/agentOrderList">代付订单</a>
+        </li>
+        <li class="{{#if active.seller_unsent_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderStatus=1&shippingStatus=0&orderTab=seller_unsent_orders">待发货</a>
+        </li>
+        <li class="{{#if active.seller_sent_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderStatus=1&shippingStatus=1&orderTab=seller_sent_orders">已发货</a>
+        </li>
+        <li class="{{#if active.seller_done_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderStatus=4&orderTab=seller_done_orders">交易成功</a>
+        </li>
+        <li class="{{#if active.seller_closed_orders}}active{{/if}}">
+            <a href="/SellerOrderList?orderStatus=3&orderTab=seller_closed_orders">交易关闭</a>
+        </li>
+        <li class="{{#if active.shopWallet}}active{{/if}}">
+            <a href="/mywallet/shop?orderTab=shopWallet">店铺钱包</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            宝贝管理
+        </li>
+        <li class="{{#if active.seller_publish_goods}}active{{/if}}">
+            <a href="/SellerGoodsMgt/publishGoodsStep1">宝贝发布</a>
+        </li>
+        <li class="{{#if active.seller_onsale_goods}}active{{/if}}">
+            <a href="/SellerGoodsMgt/SellerGoodsList/true">出售中的宝贝</a>
+        </li>
+        <li class="{{#if active.seller_offsale_goods}}active{{/if}}">
+            <a href="/SellerGoodsMgt/SellerGoodsList/false">已下架的宝贝</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            物流管理
+        </li>
+        <li class="{{#if active.send_goods}}active{{/if}}">
+        	<a href="#">发货</a>
+            <!-- <a href="/seller/sendGoods">发货</a> -->
+        </li>
+        <li class="{{#if active.logistics}}active{{/if}}">
+            <a href="#">物流服务</a>
+            <!-- <a href="/seller/logistics">物流服务</a> -->
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            店铺管理
+        </li>
+        <li class="{{#if active.shop_basic_settings}}active{{/if}}">
+            <a href="/SellerShop">店铺基本设置</a>
+        </li>
+    </ul>
+</div>

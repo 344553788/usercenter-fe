@@ -1,0 +1,164 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="row">
+                <h3 class="panel-title col-md-5 col-xs-5">{{onEditGoods.cateSpec.category.title}}</h3>
+                <ol class="breadcrumb col-md-7 col-xs-7 text-right">
+                    <li>
+                        <a href="/SellerGoodsMgt/SellerGoodsList/{{onEditGoods.isOn}}">
+                        {{#if onEditGoods.isOn}}
+                        	出售中的宝贝
+						{{else}}
+							已下架的宝贝
+						{{/if}}
+                        </a>
+                    </li>
+                    <li>修改商品</li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel-body  col-md-12 col-xs-12">
+            {{> success_failure_feedback}}
+
+            <form class="form-horizontal" action="/SellerGoodsMgt/editGoods/{{onEditGoods.productCode}}" method="post" enctype="multipart/form-data">
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="name" class="col-md-2 col-xs-2 control-label">商品名称:</label>
+                    <div class="col-md-5 col-xs-5">
+                        <input class="form-control" id="name" placeholder="商品名称" name="name" type="text" value="{{onEditGoods.name}}">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="price" class="col-md-2 col-xs-2 control-label">市场价格:</label>
+                    <div class="col-md-5 col-xs-5">
+                        <input class="form-control" id="price" placeholder="市场价格" name="price" type="text" value="{{onEditGoods.price}}">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="name" class="col-md-2 col-xs-2 control-label">商品规格:</label>
+                    <div id="fullSpec" class="div_contentlist checkbox">
+                        {{#each onEditGoods.cateSpec.specs}}
+                        <ul class="Father_Title">
+                            <li>{{specName}}:</li>
+                            <input type="hidden" value="{{id}}" />
+                        </ul>
+                        <ul class="Father_Item{{@index}}">
+                            {{#each specValues}}
+                            <li class="li_width">
+                                <label>
+                                	{{#if active}}
+                                    <input type="checkbox" class="chcBox_Width" value="{{id}}" checked >{{specValue}} 
+                                    {{else}}
+									<input type="checkbox" class="chcBox_Width" value="{{id}}"  >{{specValue}} 
+									{{/if}}
+
+                                </label>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        <br> {{/each}}
+                    </div>
+
+                </div>
+                <div id="createTable" style="margin-bottom: 20px"></div>
+
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label style="margin-bottom: 20px" for="name" class="col-md-2 col-xs-2 control-label">上传商品图片:</label>
+                        {{#each onEditGoods.images}}
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-4 col-md-offset-2 col-xs-offset-2 file">
+                            	<input type="hidden" name="images[{{@index}}].imgUrl" value="{{imgUrl}}">
+								<img src="{{imgUrl}}" width="100px" height="100px" alt="">
+                                <input type="file" name="goodsPic{{@index}}" accept="image/png, image/gif, image/jpeg" >请上传要更新的商品图片
+                            </a>
+                        </div>
+                        {{/each}}
+                        
+                    </div>
+                </fieldset>
+
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label style="margin-bottom: 20px" for="name" class="col-md-2 col-xs-2 control-label">上传商品封面图片:</label>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <a class="col-md-4 col-xs-4 col-md-offset-2 col-xs-offset-2 file">
+                            	<input type="hidden" name="coverPics" value="{{onEditGoods.coverPics}}">
+                            	<img src="{{onEditGoods.coverPics}}" width="100px" height="100px" alt="">
+                                <input type="file" name="goodsPic5" accept="image/png, image/gif, image/jpeg">
+                            </a>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="isOn" class="col-md-2 col-xs-2 control-label">是否上架:</label>
+                    <div class="col-md-5 col-xs-5">
+                    	{{#if onEditGoods.isOn}}
+                        	<input class="chcBox_Width" id="isOn" name="isOn" type="checkbox" checked> 是
+						{{else}}
+							<input class="chcBox_Width" id="isOn" name="isOn" type="checkbox"> 是
+						{{/if}}
+                        
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="isLogistics" class="col-md-2 col-xs-2 control-label">是否需要物流:</label>
+                    <div class="col-md-5 col-xs-5">
+                    	{{#if onEditGoods.isLogistics}}
+                        <input class="chcBox_Width" id="isLogistics" name="isLogistics" type="checkbox" checked>
+                        {{else}}
+                        <input class="chcBox_Width" id="isLogistics" name="isLogistics" type="checkbox">
+                        {{/if}}
+                        <input class="form-control" id="shippingFee" placeholder="运费" name="shippingFee" type="text" value="{{onEditGoods.shippingFee}}">  
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12 col-xs-12">
+                    <label for="desc" class="col-md-2 col-xs-2 control-label">商品详情:</label>
+                    <div class="col-md-6 col-xs-6">
+                        <textarea rows="8" class="form-control" id="desc" placeholder="商品详情" name="desc" type="text">{{onEditGoods.desc}}</textarea>
+                    </div>
+                </div>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-3 col-md-offset-4 col-xs-offset-4">
+                        <input class="btn btn-no1 btn-block" type="submit" value="保存">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    <!-- GoodsSpecCompose -->
+    <script src="/javascripts/GoodsSpecCompose.js"></script>
+
+	<!-- utility function getSkus -->
+   	<script>
+   		function getSkus() {
+   			{{#each onEditGoods.skus}}
+	    	$("input[name='skus[{{@index}}].price']").val('{{price}}');
+	    	$("input[name='skus[{{@index}}].salePrice']").val('{{salePrice}}');
+	    	$("input[name='skus[{{@index}}].quantity']").val('{{quantity}}');
+	    	$("input[name='skus[{{@index}}].barCode']").val('{{barCode}}');
+	    	$("input[name='skus[{{@index}}].remark']").val('{{remark}}');
+	    	{{/each}}
+   		}
+   	</script>
+
+   	<!-- business logic  -->
+    <script>
+    window.onload = function() {
+    	step.Creat_Table();
+    	getSkus();
+
+        //SKU信息
+        $("#fullSpec label").bind("change", function() {
+            step.Creat_Table();
+
+            getSkus();
+        });
+    }
+    </script>
+</div>

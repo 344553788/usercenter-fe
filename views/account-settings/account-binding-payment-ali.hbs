@@ -1,0 +1,37 @@
+<div class="col-md-10 col-xs-9">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">账户绑定</h3>
+		</div>
+		<div class="panel-body">
+			<ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                	<a href="#">支付宝</a>
+                </li>
+                <li role="presentation">
+                	<a href="/accountsettings/payment-binding-wechat">微信</a>
+                </li>
+            </ul>
+			<div class="row">
+				<div class="col-md-6 col-xs-12 col-md-offset-3 margin-top-50">
+					<div class="thumbnail">
+						<img src="/images/alipay.jpg" alt="支付宝">
+						<div class="caption text-center line-height-3">
+							<h4>支付宝绑定</h4>
+							<p>绑定账户后方便您提现</p>
+							{{#if paymentAccount}}
+							<p>已绑定账户：{{paymentAccount}}</p>
+							<p>
+								<a href="/accountsettings/payment-binding-alimodify" class="btn btn-no1">更改绑定</a>
+							</p>
+							{{else}}
+								<a href="/accountsettings/payment-binding-alimodify" class="btn btn-no1">立即绑定</a>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

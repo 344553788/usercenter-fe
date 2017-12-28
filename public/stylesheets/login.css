@@ -1,0 +1,69 @@
+#login-header {
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.login-header-logo {
+    margin-left: 100px;
+    margin-right: 25px;
+    vertical-align: middle;
+}
+
+.login-header-logo a,
+.login-header-logo a:active,
+.login-header-logo a:hover {
+    text-decoration: none;
+}
+
+.login-header-title {
+    /*vertical-align:middle;*/
+    padding-top: 20px;
+    padding-right: 80px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+#login-main {
+    position: relative;
+    height: 600px;
+    background: url(../images/login_pic.jpg) 150px 0px no-repeat;
+    background-color: #f9f9f9;
+}
+
+.loginform-position {
+    position: absolute;
+    top: 100px;
+    right: 16px;
+}
+
+#reglink {
+    padding-top: 16px;
+}
+
+#login-main .panel-info>.panel-heading {
+    background-color: #fff;
+    border: none;
+    color: #333;
+    /*	padding:40px 25px 10px;
+*/
+}
+
+#login-main .panel-info {
+    border: none;
+    padding: 40px 50px 25px;
+}
+
+#login-main .panel-title {
+    font-size: 18px;
+}
+
+#login-main .btn-success {
+    background-color: #e50112;
+    border: none;
+}
+
+#footer {
+    background-color: #fff;
+    color: #666;
+}

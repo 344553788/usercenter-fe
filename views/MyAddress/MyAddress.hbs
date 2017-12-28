@@ -1,0 +1,112 @@
+<div class="col-md-10 col-xs-9">    
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="row">
+                <h3 class="panel-title col-md-10 col-xs-9">收货地址管理</h3>
+                <p class="col-md-2 col-xs-3"><a class="btn btn-xs btn-no1" data-toggle="modal" data-target="#addressNewModal" data-address="">新增地址</a></p>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>收货人</th>
+                            <th>详细地址</th>
+                            <th>邮编</th>
+                            <th>手机号</th>
+                            <th>操作</th>
+                            <th>默认地址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each addressList}}
+                        <tr>
+                            <td>{{receiver}}</td>
+                            <td>{{address}}</td>
+                            <td>{{zipCode}}</td>
+                            <td>{{mobile}}</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#addressUpdateModal" 
+                                data-address="{{id}}:{{receiver}}:{{address}}:{{zipCode}}:{{mobile}}:{{isDefault}}" href="#">编辑
+                                </a>
+                                <span>|</span>
+                                <a data-toggle="modal" data-target="#addressDeleteModal" 
+                                data-address="{{id}}:{{receiver}}:{{address}}:{{zipCode}}:{{mobile}}:{{isDefault}}" href="#">删除
+                                </a>
+                            </td>
+                            {{#if isDefault}}
+                            <td>默认地址</td>
+                            {{else}}
+                            <td>否</td>
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    {{> success_failure_feedback}}  
+</div>
+
+{{> address_new_pop}}
+{{> address_update_pop}}
+{{> address_delete_pop}}
+
+<script>
+window.onload = function() {
+    $('#addressNewModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var address = button.data('address') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        var values = address.split(':');
+        var modal = $(this);
+        modal.find('#address_id').val(values[0]);
+        modal.find('#receiver').val(values[1]);
+        modal.find('#address').text(values[2]);
+        modal.find('#zipCode').val(values[3]);
+        modal.find('#mobile').val(values[4]);
+        modal.find('#isDefault').prop("checked", values[5] === 'true'? true: false);
+        
+    });
+
+    $('#addressUpdateModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var address = button.data('address') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        var values = address.split(':');
+        var modal = $(this);
+        modal.find('#address_id').val(values[0]);
+        modal.find('#receiver').val(values[1]);
+        modal.find('#address').text(values[2]);
+        modal.find('#zipCode').val(values[3]);
+        modal.find('#mobile').val(values[4]);
+        modal.find('#isDefault').prop("checked", values[5] === 'true'? true: false);
+  
+    });
+
+    $('#addressDeleteModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var address = button.data('address') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+        var values = address.split(':');
+        var modal = $(this);
+        modal.find('#address_id').val(values[0]);
+        modal.find('#receiver').val(values[1]);
+        modal.find('#address').text(values[2]);
+        modal.find('#zipCode').val(values[3]);
+        modal.find('#mobile').val(values[4]);
+        modal.find('#isDefault').prop("checked", values[5] === 'true'? true: false);
+       
+    });
+}
+</script>

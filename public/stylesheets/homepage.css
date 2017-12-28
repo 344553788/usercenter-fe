@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+/*banner*/
+
+#banner {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.banner-bar {
+    display: inline-block;
+}
+
+/*首页分类*/
+
+#hp-main {
+    margin-bottom: 60px;
+}
+
+.hp-m-shoptit {
+    height: 46px;
+    line-height: 46px;
+    margin-bottom: 10px;
+}
+
+.hp-m-shoptit img {
+    margin-top: 8px;
+    margin-right: 10px;
+    float: left;
+}
+
+.hp-m-shoptit h3 {
+    float: left;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    margin-top: 10px;
+}
+
+.hp-m-shoptit a {
+    float: right;
+    font-family: "Microsoft Yahei", "微软雅黑";
+}
+
+.hp-m-shoplist {
+    margin-bottom: 30px;
+}
+
+.hp-m-sl-above {
+    border-top: 1px #eee solid;
+    border-bottom: 1px #eee solid;
+    text-align: center;
+    margin-right: -2px;
+}
+
+.hp-m-sl-shopitem {
+    border-right: 1px #eee solid;
+    width: 203px;
+    height: 278px;
+    float: left;
+}
+
+.hp-m-sl-shopitem img{
+    width: 202px;
+    height: 278px;
+}
+
+.hp-m-sl-bl {
+    height: 120px;
+    border-bottom: 1px #eee solid;
+    margin-right: -2px;
+}
+
+.hp-sl-bl-item {
+    border-right: 1px #eee solid;
+    float: left;
+    width: 203px;
+    height: 120px;
+    text-align: center;
+}
+
+.hp-sl-bl-img {
+    float: left;
+}
+
+.hp-sl-bl-img img{
+    width:202;
+    height:119px;
+}
+
+a.hp-sl-bl-txt {
+    display: inline-block;
+    float: left;
+    width: 60px;
+    line-height: 116px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    color: #666;
+    font-weight: bold;
+}
+
+

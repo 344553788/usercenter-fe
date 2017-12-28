@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>购物车-No.1商城</title>
+    <link rel="shortcut icon" href="images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/shoppingcart.css" />
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    {{> nav}}
+    
+    <div class="shopping-cart com-w">
+        <form id="toOrderForm" action="/CreateShopOrder" method="POST">
+            <div id="toOrderParams"></div>
+            <div class="shopping-item">
+                <div class="shopping-cont pb-10">
+                    <div class="cart-inner">
+                        <div class="cart-head clearfix">
+                            <div class="cart-item t-select">
+                                <input id="selectAll" type="checkbox">
+                                全选
+                            </div>
+                            <div class="cart-item t-name">商品名称</div>
+                            <div class="cart-item t-price">单价</div>
+                            <div class="cart-item t-num">数量</div>
+                            <div class="cart-item t-subtotal">小计</div>
+                            <div class="cart-item t-total">操作</div>
+                        </div>
+                        <div class="cart-cont">
+                            {{#each orders}}
+                            <div class="cart-store">
+                                <h3><input class="selectShop" type="checkbox">&nbsp;&nbsp;店铺：{{shop.shopName}}</h3>
+                                <div class="cart-st-pd">
+                                    {{#each carts}}
+                                    
+                                    <div class="cart-cont1  clearfix">
+                                        <div class="cart-item t-select">
+                                            <input type="hidden" name="productCode" value="{{productCode}}">
+                                            <input type="hidden" name="spec" value="{{spec}}">
+                                            <input type="hidden" name="productNumber" value="{{productNumber}}">
+                                            <input class="selectProduct" type="checkbox">
+                                        </div>
+                                        
+                                        <div class="cart-item t-name">
+                                            <div class="cart-shopinfo clearfix">        
+                                                <img src="{{productPic}}" alt="">
+                                                <div class="cart-shopinfo-cont">
+                                                    <p class="cart-link"><a href="#">{{productName}}</a></p>
+                                                    {{#compoundValue specValue ';' ':'}}
+                                                    {{/compoundValue}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-item t-price">¥{{salePrice}}</div>
+                                        <div class="cart-item t-num">{{productNumber}}</div>
+                                        <div class="cart-item t-subtotal totalPrice" data="{{totalPrice}}">¥{{totalPrice}}</div>
+                                        <div class="cart-item t-total"><a href="/ShoppingCart/deleteGoods/{{id}}">删除</a></div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            {{/each}}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-item">
+                <div class="shopping-cont padding-shop clearfix">
+                    <div class="cart-count fr">
+                        <div class="cart-rmb">
+                            <i>总计：</i><span id="total">0.00</span>
+                        </div>
+                        <div class="cart-btnbox">
+                            <input id="toOrder" type="button" class="cart-btn" value="结算">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {{> footer}}
+    <!-- jQuery -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script src="//cdn.bootcss.com/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#selectAll').click(function() {
+                var result = $(this).prop("checked");
+
+                $('.selectShop').prop("checked", result);
+                $('.selectProduct').prop("checked", result);
+               
+               totalPrice(); 
+            });
+
+            $('.selectShop').click(function() {
+                var result = $(this).prop("checked");
+                
+                $(this).parent().parent().find('.selectProduct').prop("checked", result);
+
+                totalPrice();
+            });
+
+            $('.selectProduct').click(function() {
+
+                totalPrice();
+            });
+
+            function totalPrice() {
+                var totalPrice = 0;
+
+                $('.selectProduct').each(function(){
+                    var result = $(this).prop("checked");
+
+                    if(result === true) {
+                        totalPrice += parseFloat($(this).parent().parent().find('.totalPrice').attr('data'));
+
+                    }
+                });
+
+                $('#total').text(totalPrice);
+            }
+            
+            $('#toOrder').click(function() {
+                var newArray = [];
+                $('.selectProduct').each(function(){
+                    var result = $(this).prop("checked");
+
+                    if(result === true) {
+                        var _productCode = $(this).parent().find("[name='productCode']");
+                        var _spec = $(this).parent().find("[name='spec']");
+                        var _productNumber = $(this).parent().find("[name='productNumber']");
+
+                        var ret = {
+                            'productCode': _productCode.val(),
+                            'spec':  _spec.val(),
+                            'productNumber': _productNumber.val()
+                        }
+                        newArray.push(ret);
+                    }
+                });
+
+                //console.log(newArray);
+                var ret = '';
+                
+                for(var i = 0; i < newArray.length; i++) {
+                    ret += '<input type="hidden" name="products[' + i + '].productCode" value="' +  newArray[i].productCode + '">'
+                        + '<input type="hidden" name="products[' + i + '].spec" value="' +  newArray[i].spec + '">'
+                        + '<input type="hidden" name="products[' + i + '].quantity" value="' +  newArray[i].productNumber + '">'
+                    ;
+                }
+                
+                $('#toOrderParams').append(ret);
+
+                $('#toOrderForm').submit();
+            });
+            
+        });
+    </script>
+</body>
+
+</html>

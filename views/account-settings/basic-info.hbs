@@ -1,0 +1,92 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">个人信息</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="/accountsettings/basic-info" method="post">
+                <fieldset class="fieldset-style">
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label class="col-md-2 col-xs-12 control-label">
+                            会员级别:
+                        </label>
+                        <div class="col-md-6 col-xs-12 form-control-static">
+                            <p class="label
+                                {{#compare userBasicInfo.level 2}}
+                                    label-info
+                                {{/compare}}
+                                
+                                {{#compare userBasicInfo.level 1}}
+                                    label-warning
+                                {{/compare}}
+
+                                {{#compare userBasicInfo.level 0}}
+                                    label-danger
+                                {{/compare}}
+                            ">
+                            {{userBasicInfo.levelName}} (¥{{userBasicInfo.levelPrice}})
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <a class="btn btn-default btn-sm" href="/accountsettings/security-info/account-upgrade">会员升级</a>
+                        </div>    
+                    </div>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="username" class="col-md-2 col-xs-12 control-label">用户名:</label>
+                        <div class="col-md-6 col-xs-12">
+                            <p class="form-control-static">{{userBasicInfo.userName}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="mobile" class="col-md-2 col-xs-12 control-label">手机号码:</label>
+                        <div class="col-md-6 col-xs-12">
+                            <p class="form-control-static">{{userBasicInfo.mobile}}</p>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <a class="btn btn-default btn-sm" href="/accountsettings/security-info/mobile-update">修改手机</a>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="email" class="col-md-2 col-xs-12 control-label">邮箱:</label>
+                        <div class="col-md-6 col-xs-12">
+                            <p class="form-control-static">{{userBasicInfo.email}}</p>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <a class="btn btn-default btn-sm" href="/accountsettings/security-info/email-update">修改邮箱</a>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="personalId" class="col-md-2 col-xs-12 control-label">身份证号码:</label>
+                        <div class="col-md-6 col-xs-12">
+                            <p class="form-control-static">{{userBasicInfo.certificateNo}}</p>
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                            <a class="btn btn-default btn-sm" href="/accountsettings/security-info/personalId-update">身份证认证</a>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="nickname" class="col-md-2 col-xs-12 control-label">昵称:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" id="nickname" placeholder="输入昵称" name="nickName" value="{{userBasicInfo.nickName}}">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <!-- <div class="form-group col-md-12 col-xs-12">
+                        <label for="user_avata" class="col-md-2 col-xs-2 control-label">头像:</label>
+                        <input class="col-md-6 col-xs-6" id="user_avata" placeholder="头像" name="user_avata" type="text">
+                    </div> -->
+                
+                    <div class="col-md-3 col-xs-12 col-md-offset-4">
+                        <input class="btn btn-no1 btn-block" type="submit" value="保存">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    {{#if success}}
+    <div class="alert alert-success" role="alert">操作成功</div>
+    {{/if}} {{#if failure}}
+    <div class="alert alert-danger" role="alert">操作失败</div>
+    {{/if}}
+</div>

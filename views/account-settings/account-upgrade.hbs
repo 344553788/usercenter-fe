@@ -1,0 +1,60 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">当前等级</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset class="fieldset-style">
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label class="col-md-2 col-xs-12 control-label">
+                            会员级别:
+                        </label>
+                        <div class="col-md-6 col-xs-12 form-control-static">
+                            <span class="label 
+                                {{#compare userBasicInfo.level 2}}
+                                    label-info
+                                {{/compare}}
+                                
+                                {{#compare userBasicInfo.level 1}}
+                                    label-warning
+                                {{/compare}}
+
+                                {{#compare userBasicInfo.level 0}}
+                                    label-danger
+                                {{/compare}}
+                                ">
+                                {{userBasicInfo.levelName}} (¥{{userBasicInfo.levelPrice}})
+                            </span>
+                        </div>
+                        <div>
+                            {{#compare userBasicInfo.level 0}}
+                            
+                            <div class="col-md-5  col-md-offset-4 col-xs-12  margin-top-50"> 
+                                <a class="btn btn-default">您已是最高级别</a>
+                            </div>  
+                            {{/compare}} {{#compare userBasicInfo.level 1}}
+                            <div class="col-md-12 col-xs-12 margin-top-50">
+                                <div class="col-md-5 col-xs-12 col-md-offset-4">
+                                    <a href='/CreateAccountOrder/upgradelevel/0' class="btn btn-no1 btn-block margin-top-50">
+                                升级到等级A
+                                    </a>
+                                </div>
+                            </div> {{/compare}} {{#compare userBasicInfo.level 2}}
+                            <div class="col-md-12 col-xs-12 margin-top-50">
+                                <div class="col-md-5 col-xs-12 col-md-offset-4">
+                                    <a href='/CreateAccountOrder/upgradelevel/1' class="btn btn-default">升级到等级B</a>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12 margin-top-50">
+                                <div class="col-md-5 col-xs-12 col-md-offset-4">
+                                    <a href='/CreateAccountOrder/upgradelevel/0' class="btn btn-default">升级到等级A</a>
+                                </div>
+                            </div> {{/compare}}
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="col-md-10 col-xs-9">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">账户绑定</h3>
+		</div>
+		<div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#">支付宝</a>
+                </li>
+                <li role="presentation">
+                    <a href="/accountsettings/payment-binding-wechat">微信</a>
+                </li>
+            </ul>
+            
+            <form class="form-horizontal margin-top-50" action="/accountsettings/alipay-binding-confirm" method="POST">
+                <input type="hidden" name="type" value="1">
+                <fieldset>
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="bankCode" class="col-md-2 col-xs-12 control-label">
+                            输入新账户:
+                        </label>
+                        <div class="col-md-6 col-xs-12">
+                            <input id="bankCode" type="text" class="form-control" placeholder="请输入新账户名称" name="bankCode">
+                        </div> 
+                    </div>
+                    
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="verifyCode" class="col-md-2 col-xs-12 control-label">
+                            短信验证码:
+                        </label>
+                        <div class="col-md-3 col-xs-12">
+                            <input type="text" class="form-control" id="verifyCode" placeholder="验证码" name="verifyCode">
+                        </div>
+                        <input id="smsMobile" type="hidden" value="{{theUser.mobile}}">
+                        <div class="col-md-3 col-xs-12">
+                            <a id="smscodeBtn" href="#" class="btn btn-default">获取短信校验码</a>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-6 col-md-offset-2 col-xs-offset-2">
+                        <input class="btn btn-no1 btn-block" type="submit" value="保存">
+                    </div>
+                </fieldset>
+
+
+            </form>
+		</div>
+
+        {{> success_failure_feedback}}
+	</div>
+</div>
+
+<script>
+    window.onload = function() {
+        sendSMS();
+    }
+
+</script>

@@ -1,0 +1,43 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="row">
+                <h3 class="panel-title col-md-4 col-xs-12">分红明细</h3>
+                <ol class="breadcrumb col-md-8 col-xs-12 text-right">
+                    <li><a href="/MyRestitution/restitutionRecord">我的分红</a></li>
+                    <li>分红明细</li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>分红时间</th>
+                            <th>分红金额</th>
+                            <th>已分红总金额</th>
+                            <th>剩余分红金额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each records}}
+                        <tr>
+                        	<td>{{cashbackTime}}</td>
+                            <td>{{cashbackPrice}}</td>
+                            <td>{{completeCashbackPrice}}</td>
+                            <td>{{restCashbackPrice}}</td>
+                            
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                {{#paginationPlus page.totalPages page.pageNumber '/MyRestitution/restitutionRecordDetails' '' cashNo}} {{/paginationPlus}}
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

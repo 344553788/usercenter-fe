@@ -1,0 +1,48 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">邮箱修改</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="/accountsettings/security-info/email-update" method="post">
+                <fieldset>
+                    <!-- Phone -->
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="newEmail" class="col-md-2 col-xs-12 control-label">
+                            新邮箱地址:
+                        </label>
+                        <div class="col-md-5 col-xs-12">
+                            <input id="newEmail" type="text" class="form-control" placeholder="新邮箱地址" name="email">
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <a id="emailcodeBtn" href="#" class="btn btn-default">发送邮箱验证</a>
+                        </div>
+                    </div>
+                    <!-- verify code -->
+                    <div class="form-group col-md-10 col-xs-12">
+                        <label for="verifycode" class="col-md-2 col-xs-12 control-label">
+                            邮箱验证码:
+                        </label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" id="verifycode" placeholder="邮箱验证码" name="verifyCode">
+                        </div>
+                    </div> 
+                </fieldset>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-6 col-md-offset-4 col-xs-offset-2">
+                        <button type="submit" class="btn btn-no1 btn-block">保存</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    {{> success_failure_feedback}}
+</div>
+
+<script>
+    window.onload = function() {
+        sendEmail();
+    }
+
+</script>

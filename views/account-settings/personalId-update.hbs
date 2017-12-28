@@ -1,0 +1,65 @@
+<div class="col-md-10 col-xs-9">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">认证信息 <small class="col-xs-12 mu-margin-top-20">只有认证通过审核的会员才能开设店铺</small></h3> 
+        </div>
+        {{> success_failure_feedback}}
+
+        <div class="panel-body">
+
+            <form class="form-horizontal" action="/accountsettings/security-info/personalId-update" method="post" enctype="multipart/form-data">
+                <fieldset class="fieldset-style">
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label for="username" class="col-md-2 col-xs-12 control-label">真实姓名:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" id="name" placeholder="输入真实姓名" name="name" value="{{theUser.name}}">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 col-xs-12">
+                        <label for="personalId" class="col-md-2 col-xs-12 control-label">身份证号码:</label>
+                        <div class="col-md-5 col-xs-12">
+                            <input type="text" class="form-control" id="personalId" placeholder="身份证号码" name="certificateNo" value="{{theUser.certificateNo}}">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset-style credential">
+                    <h5 class="panel-title">请上传三张身份证照片（证件正面，证件反面，手持证件）</h5>
+                    <p>照片要求：<br>
+                    1.身份证正反面字迹完整清晰，完整露出四个边角，字迹无模糊，无遮挡。<br>
+                    2.手持相关证件，使认证人面部及身份证信息清晰可见，双手手臂完整露出。<br>
+                    3.照片支持png、gif、jpeg格式。</p>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <a class="col-md-12 col-xs-12 file">
+                            <input type="file" name="pids" accept="image/png, image/gif, image/jpeg">
+                        </a>
+                        <span class="col-md-12 col-xs-12">
+                            身份证正面照
+                        </span>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <a class="col-md-12 col-xs-12 file">
+                            <input type="file" name="pids" accept="image/png, image/gif, image/jpeg">
+                        </a>
+                        <span class="col-md-12 col-xs-12">
+                            身份证反面照
+                        </span>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <a class="col-md-12 col-xs-12 file">
+                            <input type="file" name="pids" accept="image/png, image/gif, image/jpeg">
+                        </a>
+                        <span class="col-md-12 col-xs-12">
+                            手持身份证正面照
+                        </span>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset-style col-md-12 col-xs-12">
+                    <div class="col-md-3 col-xs-8 col-md-offset-4 col-xs-offset-2">
+                        <input class="btn btn-no1 btn-block" type="submit" value="认证申请">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+</div>

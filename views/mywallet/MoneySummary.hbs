@@ -1,0 +1,31 @@
+<div class="col-md-10 col-xs-9">
+	<div id="mywal">
+		<div class="panel">
+			<div class="panel-heading">
+	            <h3 class="panel-title">我的钱包</h3>
+	        </div>
+			<div class="panel-body">
+		    	<div class="col-md-8 col-xs-12">
+				  <p><font color="#FF0000">*</font> 温馨提示：本商城1元=100贡献值=100创收积分。您的订单总额全部转换为贡献值，最高返还50%，
+						贡献值以每天千分之一左右的速率释放为创收积分，创收积分满10000即可提现，提现手续费扣除10%<p>
+					<a href="/mywallet/MoneyDetails" class="btn btn-no1">资金明细</a>
+				<!--	<a href="/mywallet/RechargeWallet" class="btn btn-no1">充值</a> -->
+					<a href="/mywallet/DrawbackWallet_Gold" class="btn btn-no1">提现</a>
+				</div>
+				<div class="col-md-12 col-xs-12 margin-top-20">
+					<h3>我的收益</h3>
+					<p>可用创收积分：{{summary.goldAmount}}</p>
+					<p>冻结创收积分：{{summary.goldFreezeAmount}}</p>
+					<p>消费收益贡献值：{{summary.availableAmount}} </p>
+					<p>团队收益贡献值：{{summary.teamAvailableAmount}}</p><br />
+        <!--
+					<h3>交易详情</h3>
+					<p>交易金额：{{summary.orderPrice}}</p>
+					<p>总分红金额：{{summary.cashbackPrice}}</p>
+					<p>已到消费贡献值金额：{{summary.completeCashbackPrice}}</p>
+					<p>剩余消费贡献值金额：{{summary.restCashbackPrice}}</p>-->
+		        </div>
+		    </div>
+        </div>
+	</div>
+</div>

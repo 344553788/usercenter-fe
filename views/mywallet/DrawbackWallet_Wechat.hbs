@@ -1,0 +1,56 @@
+<div class="col-md-10 col-xs-9">
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">提现申请</h3>
+		</div>
+		<div class="panel-body">
+			{{> success_failure_feedback}}
+
+			<form class="form-horizontal margin-top-20" action="/mywallet/DrawbackWallet_Wechat" method="POST" role="form">
+				<div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label" for="">提现金额：</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="text" class="form-control" id="" name="amount" placeholder="请输入提现金额">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-xs-12 col-md-offset-2 font-grey">
+						<!-- <p><small>账户可提现金额：¥6800.00</small></p> -->
+						<p><small>单笔提现金额不少于100元</small></p>
+					</div>
+				</div>
+				<nav class="navbar navbar-default margin-top-50" role="navigation">
+					<div class="navbar-header col-md-12 col-xs-12">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" ><a href="/mywallet/DrawbackWallet_Ali">支付宝</a></li>
+							<li role="presentation" class="active"><a href="#">微信</a></li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-xs-12 col-md-offset-3 margin-top-20">
+							<div class="thumbnail">
+			                    <img src="/images/wepay.jpg" alt="微信">
+			                    <div class="caption text-center line-height-3">
+									<h3>微信支付账户绑定</h3>
+									{{#if theUser.userBank.wepay}}
+									<h5>
+										已绑定账户：{{theUser.userBank.wepay.bankCode}}
+										<a href="/accountsettings/payment-binding-wechat">更改</a>
+									</h5>
+									{{else}}
+										<a href="/accountsettings/payment-binding-wechat"><p>请先绑定支付(绑定账户后方便您提现)</p></a>
+									{{/if}}
+								</div>
+			                </div>
+						</div>
+					</div>
+				</nav>
+				<fieldset class="fieldset-style">
+                    <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-2 margin-top-20">
+                        <input class="btn btn-no1 btn-block" type="submit" value="提交">
+                    </div>
+                </fieldset>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,150 @@
+<div class="col-md-10 col-xs-12 col-md-offset-2">
+    <div class="row">
+        <h3 class="page-header col-md-12 col-xs-12">会员注册</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-xs-12 col-md-offset-1">
+	        <form class="form-horizontal" action="/authenticate/register" method="POST">
+	        	<div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label">
+						选择会员级别:
+					</label>
+					<div class="col-md-8 col-xs-12">
+						{{#each accountLevels}}
+						<div class="space col-xs-12 col-md-4">
+							<input type="radio" name="level"
+								id="inlineRadio" value="{{level}}">
+							<span class="label
+								{{#compare level 2}}
+									label-info
+								{{/compare}}
+
+								{{#compare level 1}}
+									label-warning
+								{{/compare}}
+
+								{{#compare level 0}}
+									label-danger
+								{{/compare}}
+							">
+							{{name}} (¥{{price}})
+							</span>
+						</div>
+						{{/each}}
+					</div>
+
+				</div>
+				<!-- username -->
+				<div class="form-group">
+					<label for="username" class="col-md-2 col-xs-12 control-label">
+						用户名:
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="text" class="form-control " id="username" placeholder="用户名" name="userName">
+					</div>
+				</div>
+				<!-- Password -->
+				<div class="form-group">
+					<label for="inputPassword" class="col-md-2 col-xs-12 control-label">
+						密码:
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="password"
+							class="form-control"
+							id="inputPassword"
+							placeholder="密码"
+							name="passWord">
+					</div>
+				</div>
+				<!-- Password2 -->
+				<div class="form-group">
+					<label for="inputPassword2" class="col-md-2 col-xs-12 control-label">		确认密码:
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="password"
+							class="form-control"
+							id="inputPassword2"
+							placeholder="确认密码"
+							name="passWord1">
+					</div>
+				</div>
+	            <!-- personal ID -->
+				<div class="form-group">
+					<label for="inputPersonalId" class="col-md-2 col-xs-12 control-label">
+						身份证号码:
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="text" class="form-control" id="inputPersonalId" placeholder="身份证号码" name="certificateNo">
+					</div>
+				</div>
+				<!-- Email -->
+				<div class="form-group">
+					<label for="inputEmail" class="col-md-2 col-xs-12 control-label">
+						邮箱:
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="email" class="form-control" id="inputEmail" placeholder="邮箱地址" name="email">
+					</div>
+				</div>
+				<!-- Phone -->
+				<div class="form-group">
+					<label for="inputPhone" class="col-md-2 col-xs-12 control-label">
+						手机号码:
+					</label>
+					<div class="col-md-3 col-xs-12">
+						<input id="smsMobile" type="text" class="form-control" placeholder="手机号码" name="mobile" >
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<a id="smscodeBtn" href="#" class="btn btn-primary">发送验证码</a>
+					</div>
+				</div>
+				<!-- verify code -->
+				<div class="form-group">
+					<label for="verifycode" class="col-md-2 col-xs-12 control-label">
+						短信验证码:
+					</label>
+					<div class="col-md-3 col-xs-12">
+						<input type="text" class="form-control" id="verifycode" placeholder="短信验证码" name="verifyCode">
+					</div>
+				</div>
+<!--
+        <div class="form-group">
+					<label class="col-md-2 col-xs-12 control-label" for="">推荐类型：</label>
+					<div class="col-md-4 col-xs-12">
+						<label class="col-md-6 col-xs-12 control-label" for=""><input type="radio" name="isAgent" id="" value="0"  checked="checked" />会员推荐</label>
+					 <label class="col-md-6 col-xs-12 control-label" for=""><input type="radio" name="isAgent" id="" value="1"/>代理推荐</label>
+					</div>
+				</div>
+-->
+				<!-- recommend -->
+				<div class="form-group">
+					<label for="inputCode" class="col-md-2 col-xs-12 control-label">
+						推荐人(代码):
+					</label>
+					<div class="col-md-4 col-xs-12">
+						<input type="text" class="form-control" id="inputCode" placeholder="推荐人(非必填)" name="recommender">
+					</div>
+				</div>
+				<!-- SaveBtn -->
+				<div class="form-group margin-top-50 margin-bottom-200">
+					<div class="col-md-offset-2  col-md-3 col-xs-12">
+						<button type="submit" class="btn btn-lg btn-block btn-register">
+							立即注册
+						</button>
+					</div>
+				</div>
+			</form>
+      {{#if failure}}
+      <div class="alert alert-danger" role="alert">注册失败,{{error}}</div>
+      {{/if}}
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        sendSMS();
+    }
+
+</script>

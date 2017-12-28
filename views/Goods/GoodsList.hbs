@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表-No.1商城</title>
+    <link rel="shortcut icon" href="images/icon/favicon.ico" type="image/x-icon" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/logo_bar.css">
+    <link rel="stylesheet" href="/stylesheets/goods_list.css" />
+</head>
+
+<body>
+    {{> header}}
+    {{> logo_bar}}
+    {{> nav}}
+    
+    <div id="pds-main">
+        <div class="com-w">
+            <div class="pds-m-tit">
+                <h4>手机</h4>
+                <!-- <div class="pds-sort">
+                    <a href="#" class="pds-active">默认</a>
+                    <a href="#">价格</a>
+                    <a href="#">销量</a>
+                    <a href="#">新品</a>
+                </div> -->
+            </div>
+            <div class="pds-m-list clearfix">
+                {{#each products}}
+                <div class="pds-list-item">
+                    <div class="pds-item-cont">
+                        <div class="pds-item-cont-img">
+                            <a href="/goodslist/goodsDetail/{{productCode}}"><img src="{{coverPics}}" alt="商品图片"></a>
+                        </div>
+                        <p><a href="/goodslist/goodsDetail/{{productCode}}">{{name}}</a></p>
+                        <h5 class="money">¥{{price}}</h5>
+                    </div>
+                </div>
+                {{/each}}
+            
+            </div>
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">«</a></li>
+                {{#paginationPlus page.totalPages page.pageNumber '/goodslist/' condition.cateId ''}} {{/paginationPlus}}
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+    {{> footer}}
+</body>

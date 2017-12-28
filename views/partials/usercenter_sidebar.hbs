@@ -1,0 +1,41 @@
+<div class="col-md-2 col-xs-3 sidebar">
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            信息中心管理
+        </li>
+        <li class="{{#if active.my_order}}active{{/if}}"><a href="/orderlist">我的订单</a></li>
+        <li class="{{#if active.my_collection}}active{{/if}}"><a href="#">我的收藏</a></li>
+        <!-- <li class="{{#if active.my_collection}}active{{/if}}"><a href="/MyCollection">我的收藏</a></li> -->
+        <!-- <li class="{{#if active.my_valuation}}active{{/if}}"><a href="#">我的评价</a></li> -->
+        <li class="{{#if active.my_address}}active{{/if}}"><a href="/MyAddress">收货地址</a></li>
+        <li class="{{#if active.my_team}}active{{/if}}"><a href="/myteam">我的团队</a></li>
+        <li class="{{#if active.my_restitution}}active{{/if}}"><a href="/MyRestitution/restitutionRecord">我的分红</a></li>
+        <li class="{{#if active.my_wallet}}active{{/if}}"><a href="/mywallet">我的钱包</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-brand">
+            帐户设置管理
+        </li>
+        <li class="{{#if active.basic_info}}active{{/if}}">
+            <a href="/accountsettings/basic-info">个人资料</a>
+        </li>
+        <li class="{{#if active.account_upgrade}}active{{/if}}">
+            <a href="/accountsettings/security-info/account-upgrade">会员升级</a>
+        </li>
+        <li class="{{#if active.password_update}}active{{/if}}">
+            <a href="/accountsettings/security-info/password-update">密码修改</a>
+        </li>
+        <li class="{{#if active.mobile_update}}active{{/if}}">
+            <a href="/accountsettings/security-info/mobile-update">手机修改</a>
+        </li>
+        <li class="{{#if active.email_update}}active{{/if}}">
+            <a href="/accountsettings/security-info/email-update">邮件修改</a>
+        </li>
+        <li class="{{#if active.personalId_update}}active{{/if}}">
+            <a href="/accountsettings/security-info/personalId-update">身份认证</a>
+        </li>
+        <li class="{{#if active.account_binding_payment}}active{{/if}}">
+            <a href="/accountsettings/payment-binding-ali">支付绑定</a>
+        </li>
+    </ul>
+</div>
